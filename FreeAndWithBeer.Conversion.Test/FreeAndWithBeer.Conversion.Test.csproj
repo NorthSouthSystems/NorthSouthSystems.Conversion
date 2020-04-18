@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <RootNamespace>Kangarooper.Conversion</RootNamespace>
+    <RootNamespace>FreeAndWithBeer.Conversion</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Kangarooper.Conversion\Kangarooper.Conversion.csproj" />
+    <ProjectReference Include="..\FreeAndWithBeer.Conversion\FreeAndWithBeer.Conversion.csproj" />
   </ItemGroup>
 
 </Project>

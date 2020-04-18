@@ -1,4 +1,4 @@
-﻿namespace Kangarooper.Conversion
+﻿namespace FreeAndWithBeer.Conversion
 {
     using System;
     using System.Globalization;
