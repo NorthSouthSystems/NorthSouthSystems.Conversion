@@ -11,8 +11,8 @@
             Provider = provider;
         }
 
-        public object Value { get; private set; }
-        public Type ConversionType { get; private set; }
+        public object Value { get; }
+        public Type ConversionType { get; }
         public IFormatProvider Provider { get; }
 
         public bool ConversionTypeAllowsNull => !ConversionType.IsValueType || ConversionType.IsGenericNullable();
