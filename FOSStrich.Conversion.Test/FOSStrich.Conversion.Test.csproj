@@ -35,4 +35,12 @@
         <ProjectReference Include="..\FOSStrich.Conversion\FOSStrich.Conversion.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Using Include="System" />
+        <Using Include="System.Collections.Generic" />
+        <Using Include="System.Linq" />
+        <Using Include="FluentAssertions" />
+        <Using Include="Xunit" />
+    </ItemGroup>
+
 </Project>
