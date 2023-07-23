@@ -1,4 +1,4 @@
-namespace FreeAndWithBeer.Conversion
+namespace FOSStrich.Conversion
 {
     using FluentAssertions;
     using System;

@@ -1,4 +1,4 @@
-﻿namespace FreeAndWithBeer.Conversion
+﻿namespace FOSStrich.Conversion
 {
     using System;
     using System.Collections.Generic;
