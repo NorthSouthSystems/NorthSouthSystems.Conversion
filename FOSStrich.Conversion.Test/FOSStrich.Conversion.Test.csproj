@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <RootNamespace>FreeAndWithBeer.Conversion</RootNamespace>
+    <RootNamespace>FOSStrich.Conversion</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FreeAndWithBeer.Conversion\FreeAndWithBeer.Conversion.csproj" />
+    <ProjectReference Include="..\FOSStrich.Conversion\FOSStrich.Conversion.csproj" />
   </ItemGroup>
 
 </Project>
