@@ -1,17 +1,16 @@
-﻿namespace FOSStrich.Conversion
+﻿namespace FOSStrich.Conversion;
+
+using System;
+
+public class EnumFromUnderlyingTypeConverter : ITypeConverter
 {
-    using System;
-
-    public class EnumFromUnderlyingTypeConverter : ITypeConverter
+    public void Convert(ConvertTypeRequest request)
     {
-        public void Convert(ConvertTypeRequest request)
-        {
-            if (request == null) throw new ArgumentNullException(nameof(request));
+        if (request == null) throw new ArgumentNullException(nameof(request));
 
-            Type conversionType = request.ConversionType.FlattenGenericNullable();
+        Type conversionType = request.ConversionType.FlattenGenericNullable();
 
-            if (request.Value != null && request.Value.GetType().CanBeEnumUnderlyingType() && conversionType.IsEnum)
-                request.Converted(Enum.ToObject(conversionType, request.Value));
-        }
+        if (request.Value != null && request.Value.GetType().CanBeEnumUnderlyingType() && conversionType.IsEnum)
+            request.Converted(Enum.ToObject(conversionType, request.Value));
     }
 }

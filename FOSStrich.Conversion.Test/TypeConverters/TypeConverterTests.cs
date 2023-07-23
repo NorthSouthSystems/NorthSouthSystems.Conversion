@@ -1,22 +1,21 @@
-﻿namespace FOSStrich.Conversion
+﻿namespace FOSStrich.Conversion;
+
+using System;
+using System.Globalization;
+
+public abstract class TypeConverterTests<TTypeConverter>
+    where TTypeConverter : ITypeConverter, new()
 {
-    using System;
-    using System.Globalization;
+    private readonly TTypeConverter _typeConverter = new TTypeConverter();
 
-    public abstract class TypeConverterTests<TTypeConverter>
-        where TTypeConverter : ITypeConverter, new()
+    protected ConvertTypeRequest Convert(object value, Type conversionType) =>
+        Convert(value, conversionType, CultureInfo.CurrentCulture);
+
+    protected ConvertTypeRequest Convert(object value, Type conversionType, IFormatProvider provider)
     {
-        private readonly TTypeConverter _typeConverter = new TTypeConverter();
+        var request = new ConvertTypeRequest(value, conversionType, provider);
+        _typeConverter.Convert(request);
 
-        protected ConvertTypeRequest Convert(object value, Type conversionType) =>
-            Convert(value, conversionType, CultureInfo.CurrentCulture);
-
-        protected ConvertTypeRequest Convert(object value, Type conversionType, IFormatProvider provider)
-        {
-            var request = new ConvertTypeRequest(value, conversionType, provider);
-            _typeConverter.Convert(request);
-
-            return request;
-        }
+        return request;
     }
 }

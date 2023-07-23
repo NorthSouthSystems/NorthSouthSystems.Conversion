@@ -1,16 +1,15 @@
-﻿namespace FOSStrich.Conversion
+﻿namespace FOSStrich.Conversion;
+
+using System;
+using System.Collections.Generic;
+
+internal static class TypeExtensions
 {
-    using System;
-    using System.Collections.Generic;
+    internal static bool CanBeEnumUnderlyingType(this Type type) => _enumUnderlyingTypes.Contains(type);
 
-    internal static class TypeExtensions
-    {
-        internal static bool CanBeEnumUnderlyingType(this Type type) => _enumUnderlyingTypes.Contains(type);
+    private static readonly HashSet<Type> _enumUnderlyingTypes = new HashSet<Type>(
+        new[] { typeof(byte), typeof(sbyte), typeof(ushort), typeof(short), typeof(uint), typeof(int), typeof(ulong), typeof(long) });
 
-        private static readonly HashSet<Type> _enumUnderlyingTypes = new HashSet<Type>(
-            new[] { typeof(byte), typeof(sbyte), typeof(ushort), typeof(short), typeof(uint), typeof(int), typeof(ulong), typeof(long) });
-
-        internal static bool IsGenericNullable(this Type type) => Nullable.GetUnderlyingType(type) != null;
-        internal static Type FlattenGenericNullable(this Type type) => Nullable.GetUnderlyingType(type) ?? type;
-    }
+    internal static bool IsGenericNullable(this Type type) => Nullable.GetUnderlyingType(type) != null;
+    internal static Type FlattenGenericNullable(this Type type) => Nullable.GetUnderlyingType(type) ?? type;
 }
