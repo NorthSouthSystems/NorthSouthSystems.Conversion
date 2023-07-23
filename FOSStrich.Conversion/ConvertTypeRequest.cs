@@ -1,7 +1,5 @@
 ﻿namespace FOSStrich.Conversion;
 
-using System;
-
 public class ConvertTypeRequest
 {
     internal ConvertTypeRequest(object value, Type conversionType, IFormatProvider provider)

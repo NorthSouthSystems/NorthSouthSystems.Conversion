@@ -1,6 +1,5 @@
 ﻿namespace FOSStrich.Conversion;
 
-using System;
 using System.Globalization;
 
 public abstract class TypeConverterTests<TTypeConverter>

@@ -1,8 +1,5 @@
 ﻿namespace FOSStrich.Conversion;
 
-using System;
-using System.Collections.Generic;
-
 internal static class TypeExtensions
 {
     internal static bool CanBeEnumUnderlyingType(this Type type) => _enumUnderlyingTypes.Contains(type);

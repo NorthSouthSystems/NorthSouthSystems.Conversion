@@ -1,7 +1,5 @@
 ﻿namespace FOSStrich.Conversion;
 
-using System;
-
 public class NoOpTypeConverter : ITypeConverter
 {
     public void Convert(ConvertTypeRequest request)

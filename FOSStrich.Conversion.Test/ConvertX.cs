@@ -1,9 +1,5 @@
 namespace FOSStrich.Conversion;
 
-using FluentAssertions;
-using System;
-using Xunit;
-
 public class ConvertXTests
 {
     private readonly ConvertX _convertX = new ConvertX();

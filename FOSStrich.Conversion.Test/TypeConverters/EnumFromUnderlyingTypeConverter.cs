@@ -1,11 +1,5 @@
 ﻿namespace FOSStrich.Conversion;
 
-using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-
 public class EnumFromUnderlyingTypeConverterTests : TypeConverterTests<EnumFromUnderlyingTypeConverter>
 {
     // An Enum can be cast from any value that is in range of its UnderlyingType, hence the 8th day of the week test.
