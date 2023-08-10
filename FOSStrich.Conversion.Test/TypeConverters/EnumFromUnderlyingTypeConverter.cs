@@ -27,7 +27,7 @@ public class EnumFromUnderlyingTypeConverterTests : TypeConverterTests<EnumFromU
         void Assert(ConvertTypeRequest request)
         {
             request.IsConverted.Should().BeTrue();
-            request.ConvertedValue.Should().BeEquivalentTo(expectedValue);
+            request.ConvertedValue.Should().Be(expectedValue);
             request.ConvertedValue.GetType().Should().Be(typeof(DayOfWeek));
         }
     }

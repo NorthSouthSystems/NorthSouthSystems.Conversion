@@ -9,6 +9,6 @@ public class SystemConvertConverterTests : TypeConverterTests<SystemConvertTypeC
         var request = Convert(value, conversionType);
 
         request.IsConverted.Should().BeTrue();
-        request.ConvertedValue.Should().BeEquivalentTo(expectedConvertedValue);
+        request.ConvertedValue.Should().Be(expectedConvertedValue);
     }
 }
