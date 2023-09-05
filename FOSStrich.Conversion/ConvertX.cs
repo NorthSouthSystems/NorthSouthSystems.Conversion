@@ -9,7 +9,9 @@ public interface ITypeConverter
 
 public class ConvertX
 {
-    private readonly List<ITypeConverter> _typeConverters = new()
+    // Construction
+
+    private static readonly IEnumerable<ITypeConverter> _defaultTypeConverters = new ITypeConverter[]
     {
         new NoOpTypeConverter(),
         new NullTypeConverter(),
@@ -17,6 +19,28 @@ public class ConvertX
         new EnumFromUnderlyingTypeConverter(),
         new SystemConvertTypeConverter()
     };
+
+    public ConvertX()
+        : this(_defaultTypeConverters)
+    { }
+
+    public ConvertX(params ITypeConverter[] typeConverters)
+        : this((IEnumerable<ITypeConverter>)typeConverters)
+    { }
+
+    public ConvertX(IEnumerable<ITypeConverter> typeConverters)
+    {
+        if (typeConverters == null)
+            throw new ArgumentNullException(nameof(typeConverters));
+
+        // Always "make a copy" of the enumerable in case it is a modifiable collection.
+        _typeConverters = typeConverters.ToArray();
+
+        if (!_typeConverters.Any())
+            throw new ArgumentOutOfRangeException(nameof(typeConverters));
+    }
+
+    private readonly IEnumerable<ITypeConverter> _typeConverters;
 
     // ConvertType Generic and Object
 
