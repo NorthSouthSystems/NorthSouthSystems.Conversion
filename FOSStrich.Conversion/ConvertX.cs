@@ -1,6 +1,5 @@
 ﻿namespace FOSStrich.Conversion;
 
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 public interface ITypeConverter
@@ -10,7 +9,7 @@ public interface ITypeConverter
 
 public class ConvertX
 {
-    private readonly List<ITypeConverter> _typeConverters = new List<ITypeConverter>
+    private readonly List<ITypeConverter> _typeConverters = new()
     {
         new NoOpTypeConverter(),
         new NullTypeConverter(),
@@ -19,23 +18,74 @@ public class ConvertX
         new SystemConvertTypeConverter()
     };
 
-    public TConversionType ConvertType<TConversionType>(object value) =>
-        (TConversionType)ConvertType(value, typeof(TConversionType), CultureInfo.CurrentCulture);
+    // ConvertType Generic and Object
 
-    public TConversionType ConvertType<TConversionType>(object value, IFormatProvider provider) =>
-        (TConversionType)ConvertType(value, typeof(TConversionType), provider);
+    public TConversionType ConvertType<TConversionType>(object value,
+        IFormatProvider provider = null, bool throwIntermediateExceptions = false) =>
+            (TConversionType)ConvertType(value, typeof(TConversionType), provider, throwIntermediateExceptions);
 
-    public object ConvertType(object value, Type conversionType) =>
-        ConvertType(value, conversionType, CultureInfo.CurrentCulture);
-
-    [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Allow Converter authors to throw any Exception Type when conversion is not possible.")]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "<Pending>")]
-    public object ConvertType(object value, Type conversionType, IFormatProvider provider)
+    public object ConvertType(object value, Type conversionType,
+        IFormatProvider provider = null, bool throwIntermediateExceptions = false)
     {
-        var request = new ConvertTypeRequest(value, conversionType, provider);
+        var request = ConvertTypeImpl(value, conversionType, provider, throwIntermediateExceptions, false);
 
-        // Don't create unneccessary garbage; instantiate when the first Exception is caught.
-        List<Exception> exceptions = null;
+        return request.IsConverted ? request.ConvertedValue : throw request.ExceptionToThrow();
+    }
+
+    // TryConvertType Generic
+
+    public bool TryConvertType<TConversionType>(object value,
+        out TConversionType convertedValue) =>
+            TryConvertType(value, null, false, out convertedValue);
+
+    public bool TryConvertType<TConversionType>(object value,
+        IFormatProvider provider, out TConversionType convertedValue) =>
+            TryConvertType(value, provider, false, out convertedValue);
+
+    public bool TryConvertType<TConversionType>(object value,
+        bool abortIntermediateExceptions, out TConversionType convertedValue) =>
+            TryConvertType(value, null, abortIntermediateExceptions, out convertedValue);
+
+    public bool TryConvertType<TConversionType>(object value,
+        IFormatProvider provider, bool abortIntermediateExceptions, out TConversionType convertedValue)
+    {
+        var request = ConvertTypeImpl(value, typeof(TConversionType), provider, false, abortIntermediateExceptions);
+
+        convertedValue = request.IsConverted ? (TConversionType)request.ConvertedValue : default;
+
+        return request.IsConverted;
+    }
+
+    // TryConvertType Object
+
+    public bool TryConvertType(object value, Type conversionType,
+        out object convertedValue) =>
+            TryConvertType(value, conversionType, null, false, out convertedValue);
+
+    public bool TryConvertType(object value, Type conversionType,
+        IFormatProvider provider, out object convertedValue) =>
+            TryConvertType(value, conversionType, provider, false, out convertedValue);
+
+    public bool TryConvertType(object value, Type conversionType,
+        bool abortIntermediateExceptions, out object convertedValue) =>
+            TryConvertType(value, conversionType, null, abortIntermediateExceptions, out convertedValue);
+
+    public bool TryConvertType(object value, Type conversionType,
+        IFormatProvider provider, bool abortIntermediateExceptions, out object convertedValue)
+    {
+        var request = ConvertTypeImpl(value, conversionType, provider, false, abortIntermediateExceptions);
+
+        convertedValue = request.ConvertedValue;
+
+        return request.IsConverted;
+    }
+
+    // Implementation
+
+    private ConvertTypeRequest ConvertTypeImpl(object value, Type conversionType,
+        IFormatProvider provider, bool throwIntermediateExceptions, bool abortIntermediateExceptions)
+    {
+        var request = new ConvertTypeRequest(value, conversionType, provider ?? CultureInfo.CurrentCulture);
 
         foreach (var typeConverter in _typeConverters)
         {
@@ -44,14 +94,19 @@ public class ConvertX
                 typeConverter.Convert(request);
 
                 if (request.IsConverted)
-                    return request.ConvertedValue;
+                    return request;
             }
-            catch (Exception exception) { (exceptions ?? (exceptions = new List<Exception>())).Add(exception); }
+            catch (Exception exception)
+            {
+                if (throwIntermediateExceptions)
+                    throw;
+                else if (abortIntermediateExceptions)
+                    return request;
+
+                request.Exception(exception);
+            }
         }
 
-        if (exceptions?.Count > 0)
-            throw new AggregateException(exceptions);
-        else
-            throw new ArgumentException("TODO", nameof(conversionType));
+        return request;
     }
 }

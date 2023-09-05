@@ -5,8 +5,8 @@ public class ConvertTypeRequest
     internal ConvertTypeRequest(object value, Type conversionType, IFormatProvider provider)
     {
         Value = value;
-        ConversionType = conversionType;
-        Provider = provider;
+        ConversionType = conversionType ?? throw new ArgumentNullException(nameof(conversionType));
+        Provider = provider ?? throw new ArgumentNullException(nameof(provider));
     }
 
     public object Value { get; }
@@ -22,5 +22,28 @@ public class ConvertTypeRequest
     {
         IsConverted = true;
         ConvertedValue = convertedValue;
+    }
+
+    // Don't create unneccessary garbage; instantiate when the first Exception is added.
+    private List<Exception> _exceptions;
+
+    internal void Exception(Exception exception)
+    {
+        if (exception == null)
+            throw new ArgumentNullException(nameof(exception));
+
+        (_exceptions ??= new()).Add(exception);
+    }
+
+    internal Exception ExceptionToThrow()
+    {
+        string message = FormattableString.Invariant($"{Value?.GetType().FullName} : {ConversionType.FullName}");
+
+        if (_exceptions == null)
+            return new NotSupportedException(message);
+        else if (_exceptions.Count == 1)
+            return new Exception(message, _exceptions.Single());
+        else
+            return new AggregateException(message, _exceptions);
     }
 }

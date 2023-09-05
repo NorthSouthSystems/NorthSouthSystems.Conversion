@@ -5,7 +5,7 @@ using System.Globalization;
 public abstract class TypeConverterTests<TTypeConverter>
     where TTypeConverter : ITypeConverter, new()
 {
-    private readonly TTypeConverter _typeConverter = new TTypeConverter();
+    private readonly TTypeConverter _typeConverter = new();
 
     protected ConvertTypeRequest Convert(object value, Type conversionType) =>
         Convert(value, conversionType, CultureInfo.CurrentCulture);

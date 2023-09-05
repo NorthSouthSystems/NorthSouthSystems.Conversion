@@ -4,7 +4,7 @@ internal static class TypeExtensions
 {
     internal static bool CanBeEnumUnderlyingType(this Type type) => _enumUnderlyingTypes.Contains(type);
 
-    private static readonly HashSet<Type> _enumUnderlyingTypes = new HashSet<Type>(
+    private static readonly HashSet<Type> _enumUnderlyingTypes = new(
         new[] { typeof(byte), typeof(sbyte), typeof(ushort), typeof(short), typeof(uint), typeof(int), typeof(ulong), typeof(long) });
 
     internal static bool IsGenericNullable(this Type type) => Nullable.GetUnderlyingType(type) != null;
