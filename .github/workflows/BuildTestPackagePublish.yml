@@ -21,6 +21,6 @@ jobs:
           
         - run: dotnet test --no-build --configuration Release --verbosity normal
   
-        - run: dotnet pack --no-build --configuration Release FOSStrich.Conversion\FOSStrich.Conversion.csproj
+        - run: dotnet pack --no-build --configuration Release NorthSouthSystems.Conversion\NorthSouthSystems.Conversion.csproj
   
-        - run: dotnet nuget push --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_APIKEY}} "FOSStrich.Conversion\bin\Release\*.nupkg"
+        - run: dotnet nuget push --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_APIKEY}} "NorthSouthSystems.Conversion\bin\Release\*.nupkg"

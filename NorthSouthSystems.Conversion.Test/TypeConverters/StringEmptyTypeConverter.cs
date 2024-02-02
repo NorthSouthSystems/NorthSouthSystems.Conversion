@@ -1,4 +1,4 @@
-﻿namespace FOSStrich.Conversion;
+﻿namespace NorthSouthSystems.Conversion;
 
 public class StringEmptyTypeConverterTests : TypeConverterTests<StringEmptyTypeConverter>
 {

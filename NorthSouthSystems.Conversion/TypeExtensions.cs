@@ -1,4 +1,4 @@
-﻿namespace FOSStrich.Conversion;
+﻿namespace NorthSouthSystems.Conversion;
 
 internal static class TypeExtensions
 {

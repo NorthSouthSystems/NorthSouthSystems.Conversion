@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FOSStrich.Conversion\FOSStrich.Conversion.csproj" />
+        <ProjectReference Include="..\NorthSouthSystems.Conversion\NorthSouthSystems.Conversion.csproj" />
     </ItemGroup>
 
     <ItemGroup>
