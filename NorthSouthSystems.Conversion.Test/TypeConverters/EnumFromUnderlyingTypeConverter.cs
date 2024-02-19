@@ -5,16 +5,16 @@ public class EnumFromUnderlyingTypeConverterTests : TypeConverterTests<EnumFromU
     // An Enum can be cast from any value that is in range of its UnderlyingType, hence the 8th day of the week test.
     public static IEnumerable<object[]> IsConvertedTrueData =>
         Enumerable.Range(0, 8)
-            .SelectMany(i => new[]
+            .SelectMany(i => new object[][]
             {
-                new object[] { (byte)i, (DayOfWeek)i },
-                new object[] { (sbyte)i, (DayOfWeek)i },
-                new object[] { (ushort)i, (DayOfWeek)i },
-                new object[] { (short)i, (DayOfWeek)i },
-                new object[] { (uint)i, (DayOfWeek)i },
-                new object[] { (int)i, (DayOfWeek)i },
-                new object[] { (ulong)i, (DayOfWeek)i },
-                new object[] { (long)i, (DayOfWeek)i }
+                [(byte)i, (DayOfWeek)i],
+                [(sbyte)i, (DayOfWeek)i],
+                [(ushort)i, (DayOfWeek)i],
+                [(short)i, (DayOfWeek)i],
+                [(uint)i, (DayOfWeek)i],
+                [(int)i, (DayOfWeek)i],
+                [(ulong)i, (DayOfWeek)i],
+                [(long)i, (DayOfWeek)i]
             });
 
     [Theory]

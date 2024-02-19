@@ -7,12 +7,9 @@ public abstract class TypeConverterTests<TTypeConverter>
 {
     private readonly TTypeConverter _typeConverter = new();
 
-    protected ConvertTypeRequest Convert(object value, Type conversionType) =>
-        Convert(value, conversionType, CultureInfo.CurrentCulture);
-
-    protected ConvertTypeRequest Convert(object value, Type conversionType, IFormatProvider provider)
+    protected ConvertTypeRequest Convert(object value, Type conversionType, IFormatProvider provider = null)
     {
-        var request = new ConvertTypeRequest(value, conversionType, provider);
+        var request = new ConvertTypeRequest(value, conversionType, provider ?? CultureInfo.CurrentCulture);
         _typeConverter.Convert(request);
 
         return request;

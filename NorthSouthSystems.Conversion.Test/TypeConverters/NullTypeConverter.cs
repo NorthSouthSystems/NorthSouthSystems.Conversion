@@ -16,6 +16,7 @@ public class NullTypeConverterTests : TypeConverterTests<NullTypeConverter>
 
     [Theory]
     [InlineData(typeof(int))]
+    [InlineData(typeof(DayOfWeek))]
     public void IsConvertedFalse(Type conversionType)
     {
         var request = Convert(null, conversionType);
