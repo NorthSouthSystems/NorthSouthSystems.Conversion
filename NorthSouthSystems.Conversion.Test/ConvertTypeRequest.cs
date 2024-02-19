@@ -42,7 +42,7 @@ public class ConvertTypeRequestTests
     }
 
     [Fact]
-    public void Exceptions()
+    public void ArgumentExceptions()
     {
         Action act;
         var request = new ConvertTypeRequest("1", typeof(int), CultureInfo.InvariantCulture);

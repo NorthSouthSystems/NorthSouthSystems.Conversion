@@ -11,7 +11,7 @@ public class ConvertX
 {
     // Construction
 
-    private static readonly IEnumerable<ITypeConverter> _defaultTypeConverters = new ITypeConverter[]
+    public static IEnumerable<ITypeConverter> DefaultTypeConverters { get; } = new ITypeConverter[]
     {
         new NoOpTypeConverter(),
         new NullTypeConverter(),
@@ -21,7 +21,7 @@ public class ConvertX
     };
 
     public ConvertX()
-        : this(_defaultTypeConverters)
+        : this(DefaultTypeConverters)
     { }
 
     public ConvertX(params ITypeConverter[] typeConverters)
