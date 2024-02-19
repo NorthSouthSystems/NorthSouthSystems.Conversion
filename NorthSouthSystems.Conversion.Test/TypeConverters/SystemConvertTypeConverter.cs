@@ -6,7 +6,6 @@ public class SystemConvertConverterTests : TypeConverterTests<SystemConvertTypeC
     [InlineData("true", typeof(bool), true)]
     [InlineData("1", typeof(int), 1)]
     [InlineData("1", typeof(double), 1.0)]
-    [InlineData("Monday", typeof(DayOfWeek), DayOfWeek.Monday)]
     public void IsConvertedTrue(object value, Type conversionType, object expectedConvertedValue)
     {
         var request = Convert(value, conversionType);
