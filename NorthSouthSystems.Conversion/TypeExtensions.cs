@@ -2,6 +2,11 @@
 
 internal static class TypeExtensions
 {
+    internal static object GetDefaultValue(this Type type) =>
+        (!type.IsValueType || IsGenericNullable(type))
+            ? null
+            : Activator.CreateInstance(type);
+
     internal static bool CanBeEnumUnderlyingType(this Type type) => _enumUnderlyingTypes.Contains(type);
 
     private static readonly HashSet<Type> _enumUnderlyingTypes = new(
