@@ -10,6 +10,9 @@ public class ConvertXTests_ArgumentExceptions
         act = () => new ConvertX((IEnumerable<ITypeConverter>)null);
         act.Should().ThrowExactly<ArgumentNullException>();
 
+        act = () => new ConvertX(new NoOpTypeConverter(), null);
+        act.Should().ThrowExactly<ArgumentNullException>();
+
         act = () => new ConvertX(Array.Empty<ITypeConverter>());
         act.Should().ThrowExactly<ArgumentOutOfRangeException>();
 

@@ -32,7 +32,8 @@ public class ConvertTypeRequest
         if (exception == null)
             throw new ArgumentNullException(nameof(exception));
 
-        (_exceptions ??= new()).Add(exception);
+        _exceptions ??= new();
+        _exceptions.Add(exception);
     }
 
     internal Exception ExceptionToThrow()

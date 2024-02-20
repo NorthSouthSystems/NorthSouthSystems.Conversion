@@ -33,6 +33,9 @@ public class ConvertX
         // Always "make a copy" of the enumerable in case it is a modifiable collection.
         _typeConverters = typeConverters?.ToArray() ?? throw new ArgumentNullException(nameof(typeConverters));
 
+        if (_typeConverters.Any(tc => tc == null))
+            throw new ArgumentNullException(nameof(typeConverters));
+
         if (!_typeConverters.Any())
             throw new ArgumentOutOfRangeException(nameof(typeConverters));
     }
