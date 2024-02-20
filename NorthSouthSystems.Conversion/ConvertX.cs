@@ -13,7 +13,7 @@ public class ConvertX
 
     public static IEnumerable<ITypeConverter> DefaultTypeConverters { get; } = new ITypeConverter[]
     {
-        new NoOpTypeConverter(),
+        new IdentityTypeConverter(),
         new NullTypeConverter(),
         new StringEmptyTypeConverter(),
         new EnumFromUnderlyingTypeConverter(),

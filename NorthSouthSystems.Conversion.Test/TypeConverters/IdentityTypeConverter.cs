@@ -1,6 +1,6 @@
 ﻿namespace NorthSouthSystems.Conversion;
 
-public class NoOpTypeConverterTests : TypeConverterTests<NoOpTypeConverter>
+public class IdentityTypeConverterTests : TypeConverterTests<IdentityTypeConverter>
 {
     [Theory]
     [InlineData("", typeof(string))]

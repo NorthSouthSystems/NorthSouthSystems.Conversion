@@ -1,6 +1,6 @@
 ﻿namespace NorthSouthSystems.Conversion;
 
-public class NoOpTypeConverter : ITypeConverter
+public class IdentityTypeConverter : ITypeConverter
 {
     public void Convert(ConvertTypeRequest request)
     {
