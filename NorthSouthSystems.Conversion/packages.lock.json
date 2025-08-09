@@ -25,9 +25,9 @@
       },
       "NorthSouthSystems.NET.Sdk": {
         "type": "Direct",
-        "requested": "[3.0.9, )",
-        "resolved": "3.0.9",
-        "contentHash": "PgVGYJGr4JGJ0E9TD9x+EhVkSPfFhC8I33IVYgRuD80uw1RkTRcJsHW9PwXujO0bALyT3mRNGPGtRlDM2CM+5w=="
+        "requested": "[3.1.4, )",
+        "resolved": "3.1.4",
+        "contentHash": "1C04D64jv6V1egj15dWLJTYXxyUJTXvx6lJYECPFU/fTjG4q35JAFlDDfgT5+PlXz2Lne1Y0kav8Protfy6bXw=="
       },
       "Microsoft.NETCore.Platforms": {
         "type": "Transitive",
@@ -50,9 +50,9 @@
       },
       "NorthSouthSystems.NET.Sdk": {
         "type": "Direct",
-        "requested": "[3.0.9, )",
-        "resolved": "3.0.9",
-        "contentHash": "PgVGYJGr4JGJ0E9TD9x+EhVkSPfFhC8I33IVYgRuD80uw1RkTRcJsHW9PwXujO0bALyT3mRNGPGtRlDM2CM+5w=="
+        "requested": "[3.1.4, )",
+        "resolved": "3.1.4",
+        "contentHash": "1C04D64jv6V1egj15dWLJTYXxyUJTXvx6lJYECPFU/fTjG4q35JAFlDDfgT5+PlXz2Lne1Y0kav8Protfy6bXw=="
       }
     }
   }

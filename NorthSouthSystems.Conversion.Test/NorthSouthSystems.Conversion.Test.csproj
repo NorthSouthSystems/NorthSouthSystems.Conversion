@@ -8,10 +8,6 @@
         <TargetFramework>net9.0</TargetFramework>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <NuGetLockFilePath>packages.$(OS).lock.json</NuGetLockFilePath>
-    </PropertyGroup>
-
     <ItemGroup>
         <ProjectReference Include="..\NorthSouthSystems.Conversion\NorthSouthSystems.Conversion.csproj" />
     </ItemGroup>
