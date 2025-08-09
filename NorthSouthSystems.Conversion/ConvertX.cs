@@ -11,14 +11,14 @@ public class ConvertX
 {
     // Construction
 
-    public static IEnumerable<ITypeConverter> DefaultTypeConverters { get; } = new ITypeConverter[]
-    {
+    public static IEnumerable<ITypeConverter> DefaultTypeConverters { get; } =
+    [
         new IdentityTypeConverter(),
         new NullTypeConverter(),
         new StringEmptyTypeConverter(),
         new EnumFromUnderlyingTypeConverter(),
         new SystemConvertTypeConverter()
-    };
+    ];
 
     public ConvertX()
         : this(DefaultTypeConverters)
@@ -44,16 +44,16 @@ public class ConvertX
 
     // ConvertType Generic and Object
 
-    public TConversionType ConvertType<TConversionType>(object value,
-        IFormatProvider provider = null, bool throwIntermediateExceptions = false)
+    public TConversionType? ConvertType<TConversionType>(object? value,
+        IFormatProvider? provider = null, bool throwIntermediateExceptions = false)
     {
         var request = ConvertTypeImpl(value, typeof(TConversionType), provider, throwIntermediateExceptions, false);
 
-        return request.IsConverted ? (TConversionType)request.ConvertedValue : throw request.ExceptionToThrow();
+        return request.IsConverted ? (TConversionType?)request.ConvertedValue : throw request.ExceptionToThrow();
     }
 
-    public object ConvertType(object value, Type conversionType,
-        IFormatProvider provider = null, bool throwIntermediateExceptions = false)
+    public object? ConvertType(object? value, Type conversionType,
+        IFormatProvider? provider = null, bool throwIntermediateExceptions = false)
     {
         var request = ConvertTypeImpl(value, conversionType, provider, throwIntermediateExceptions, false);
 
@@ -62,44 +62,44 @@ public class ConvertX
 
     // TryConvertType Generic
 
-    public bool TryConvertType<TConversionType>(object value,
-            out TConversionType convertedValue) =>
+    public bool TryConvertType<TConversionType>(object? value,
+            out TConversionType? convertedValue) =>
         TryConvertType(value, null, false, out convertedValue);
 
-    public bool TryConvertType<TConversionType>(object value,
-            IFormatProvider provider, out TConversionType convertedValue) =>
+    public bool TryConvertType<TConversionType>(object? value,
+            IFormatProvider? provider, out TConversionType? convertedValue) =>
         TryConvertType(value, provider, false, out convertedValue);
 
-    public bool TryConvertType<TConversionType>(object value,
-            bool abortIntermediateExceptions, out TConversionType convertedValue) =>
+    public bool TryConvertType<TConversionType>(object? value,
+            bool abortIntermediateExceptions, out TConversionType? convertedValue) =>
         TryConvertType(value, null, abortIntermediateExceptions, out convertedValue);
 
-    public bool TryConvertType<TConversionType>(object value,
-        IFormatProvider provider, bool abortIntermediateExceptions, out TConversionType convertedValue)
+    public bool TryConvertType<TConversionType>(object? value,
+        IFormatProvider? provider, bool abortIntermediateExceptions, out TConversionType? convertedValue)
     {
         var request = ConvertTypeImpl(value, typeof(TConversionType), provider, false, abortIntermediateExceptions);
 
-        convertedValue = request.IsConverted ? (TConversionType)request.ConvertedValue : default;
+        convertedValue = request.IsConverted ? (TConversionType?)request.ConvertedValue : default;
 
         return request.IsConverted;
     }
 
     // TryConvertType Object
 
-    public bool TryConvertType(object value, Type conversionType,
-            out object convertedValue) =>
+    public bool TryConvertType(object? value, Type conversionType,
+            out object? convertedValue) =>
         TryConvertType(value, conversionType, null, false, out convertedValue);
 
-    public bool TryConvertType(object value, Type conversionType,
-            IFormatProvider provider, out object convertedValue) =>
+    public bool TryConvertType(object? value, Type conversionType,
+            IFormatProvider? provider, out object? convertedValue) =>
         TryConvertType(value, conversionType, provider, false, out convertedValue);
 
-    public bool TryConvertType(object value, Type conversionType,
-            bool abortIntermediateExceptions, out object convertedValue) =>
+    public bool TryConvertType(object? value, Type conversionType,
+            bool abortIntermediateExceptions, out object? convertedValue) =>
         TryConvertType(value, conversionType, null, abortIntermediateExceptions, out convertedValue);
 
-    public bool TryConvertType(object value, Type conversionType,
-        IFormatProvider provider, bool abortIntermediateExceptions, out object convertedValue)
+    public bool TryConvertType(object? value, Type conversionType,
+        IFormatProvider? provider, bool abortIntermediateExceptions, out object? convertedValue)
     {
         var request = ConvertTypeImpl(value, conversionType, provider, false, abortIntermediateExceptions);
 
@@ -112,8 +112,8 @@ public class ConvertX
 
     // Implementation
 
-    private ConvertTypeRequest ConvertTypeImpl(object value, Type conversionType,
-        IFormatProvider provider, bool throwIntermediateExceptions, bool abortIntermediateExceptions)
+    private ConvertTypeRequest ConvertTypeImpl(object? value, Type conversionType,
+        IFormatProvider? provider, bool throwIntermediateExceptions, bool abortIntermediateExceptions)
     {
         var request = new ConvertTypeRequest(value, conversionType, provider ?? CultureInfo.CurrentCulture);
 
