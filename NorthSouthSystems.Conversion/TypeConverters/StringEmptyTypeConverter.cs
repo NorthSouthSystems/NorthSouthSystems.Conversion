@@ -4,7 +4,7 @@ public class StringEmptyTypeConverter : ITypeConverter
 {
     public void Convert(ConvertTypeRequest request)
     {
-        if (request == null) throw new ArgumentNullException(nameof(request));
+        ArgumentNullException.ThrowIfNull(request);
 
         if (request.Value is string { Length: 0 })
         {

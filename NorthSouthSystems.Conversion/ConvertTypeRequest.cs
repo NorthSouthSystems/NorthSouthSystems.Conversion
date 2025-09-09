@@ -1,5 +1,7 @@
 ﻿namespace NorthSouthSystems.Conversion;
 
+using System.Globalization;
+
 public class ConvertTypeRequest
 {
     internal ConvertTypeRequest(object? value, Type conversionType, IFormatProvider provider)
@@ -29,8 +31,7 @@ public class ConvertTypeRequest
 
     internal void Exception(Exception exception)
     {
-        if (exception == null)
-            throw new ArgumentNullException(nameof(exception));
+        ArgumentNullException.ThrowIfNull(exception);
 
         _exceptions ??= new();
         _exceptions.Add(exception);
@@ -38,7 +39,7 @@ public class ConvertTypeRequest
 
     internal Exception ExceptionToThrow()
     {
-        string message = FormattableString.Invariant($"{Value?.GetType().FullName} : {ConversionType.FullName}");
+        string message = string.Create(CultureInfo.InvariantCulture, $"{Value?.GetType().FullName} : {ConversionType.FullName}");
 
         if (_exceptions == null)
             return new NotSupportedException(message);

@@ -4,7 +4,7 @@ public class EnumFromUnderlyingTypeConverter : ITypeConverter
 {
     public void Convert(ConvertTypeRequest request)
     {
-        if (request == null) throw new ArgumentNullException(nameof(request));
+        ArgumentNullException.ThrowIfNull(request);
 
         Type conversionType = request.ConversionType.FlattenGenericNullable();
 
