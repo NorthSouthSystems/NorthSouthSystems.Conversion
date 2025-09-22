@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthSouthSystems.Conversion", "NorthSouthSystems.Conversion\NorthSouthSystems.Conversion.csproj", "{0029B5AA-C08E-4A09-A964-8F6D977B2C3E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthSouthSystems.Conversion.Test", "NorthSouthSystems.Conversion.Test\NorthSouthSystems.Conversion.Test.csproj", "{BAAF9E9C-98B4-47A2-A3FE-7D9BC7170D94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthSouthSystems.Conversion.Tests", "NorthSouthSystems.Conversion.Tests\NorthSouthSystems.Conversion.Tests.csproj", "{BAAF9E9C-98B4-47A2-A3FE-7D9BC7170D94}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{D4B56725-7950-42EC-A384-92E9ECB1160B}"
 	ProjectSection(SolutionItems) = preProject
