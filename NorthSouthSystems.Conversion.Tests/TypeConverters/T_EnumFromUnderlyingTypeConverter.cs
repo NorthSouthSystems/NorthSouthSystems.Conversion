@@ -1,6 +1,4 @@
-﻿namespace NorthSouthSystems.Conversion;
-
-public class EnumFromUnderlyingTypeConverterTests : TypeConverterTests<EnumFromUnderlyingTypeConverter>
+﻿public class T_EnumFromUnderlyingTypeConverter : T_TypeConverter<EnumFromUnderlyingTypeConverter>
 {
     // An Enum can be cast from any value that is in range of its UnderlyingType, hence the 8th day of the week test.
     public static IEnumerable<object[]> IsConvertedTrueData =>

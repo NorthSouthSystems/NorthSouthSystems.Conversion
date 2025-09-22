@@ -1,6 +1,4 @@
-﻿namespace NorthSouthSystems.Conversion;
-
-public class StringEmptyTypeConverterTests : TypeConverterTests<StringEmptyTypeConverter>
+﻿public class T_StringEmptyTypeConverter : T_TypeConverter<StringEmptyTypeConverter>
 {
     [Fact]
     public void IsConvertedTrueNoOp()

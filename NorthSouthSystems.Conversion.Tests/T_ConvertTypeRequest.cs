@@ -1,8 +1,6 @@
-namespace NorthSouthSystems.Conversion;
-
 using System.Globalization;
 
-public class ConvertTypeRequestTests
+public class T_ConvertTypeRequest
 {
     [Theory]
     [InlineData(typeof(object), true)]

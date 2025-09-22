@@ -1,6 +1,4 @@
-﻿namespace NorthSouthSystems.Conversion;
-
-public class NullTypeConverterTests : TypeConverterTests<NullTypeConverter>
+﻿public class T_NullTypeConverter : T_TypeConverter<NullTypeConverter>
 {
     [Theory]
     [InlineData(typeof(string))]

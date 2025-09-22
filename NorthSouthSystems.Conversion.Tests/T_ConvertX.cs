@@ -1,8 +1,6 @@
-namespace NorthSouthSystems.Conversion;
-
 using System.Globalization;
 
-public class ConvertXTests
+public class T_ConvertX
 {
     private static readonly ConvertX _convertX = new();
 

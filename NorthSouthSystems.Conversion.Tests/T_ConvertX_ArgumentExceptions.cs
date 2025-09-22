@@ -1,6 +1,4 @@
-namespace NorthSouthSystems.Conversion;
-
-public class ConvertXTests_ArgumentExceptions
+public class T_ConvertX_ArgumentExceptions
 {
     [Fact]
     public void ArgumentExceptions()

@@ -1,6 +1,4 @@
-﻿namespace NorthSouthSystems.Conversion;
-
-public class SystemConvertConverterTests : TypeConverterTests<SystemConvertTypeConverter>
+﻿public class T_SystemConvertConverter : T_TypeConverter<SystemConvertTypeConverter>
 {
     [Theory]
     [InlineData("true", typeof(bool), true)]

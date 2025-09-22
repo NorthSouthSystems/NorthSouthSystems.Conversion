@@ -1,8 +1,6 @@
-namespace NorthSouthSystems.Conversion;
-
 using System.Globalization;
 
-public class ConvertXTests_Culture
+public class T_ConvertX_Culture
 {
     private static readonly ConvertX _convertX = new();
 

@@ -1,8 +1,6 @@
-﻿namespace NorthSouthSystems.Conversion;
+﻿using System.Globalization;
 
-using System.Globalization;
-
-public abstract class TypeConverterTests<TTypeConverter>
+public abstract class T_TypeConverter<TTypeConverter>
     where TTypeConverter : ITypeConverter, new()
 {
     private readonly TTypeConverter _typeConverter = new();
